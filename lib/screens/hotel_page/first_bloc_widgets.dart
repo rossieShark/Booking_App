@@ -38,8 +38,14 @@ class FirstBlocWidgets extends StatelessWidget {
                 rating: hotelInfo.rating,
                 ratingName: hotelInfo.ratingName,
               ),
+              const SizedBox(
+                height: 8,
+              ),
               CreateAddressSection(
                   hotelAddress: hotelInfo.adress, hotelName: hotelName),
+              const SizedBox(
+                height: 16,
+              ),
               CreatePriceSection(
                 price: hotelInfo.minPrice,
                 priceFor: hotelInfo.priceForIt,

@@ -34,8 +34,14 @@ class SecondBlocWidgets extends StatelessWidget {
                   height: 16,
                 ),
                 CreatePeculiaritiesSection(peculiarities: peculiarities),
+                const SizedBox(
+                  height: 12,
+                ),
                 Text(hotelInfo.aboutTheHotel.description,
                     style: TextStyleService.headline2(color: AppColors.black)),
+                const SizedBox(
+                  height: 16,
+                ),
                 const _CreateConditionsSection()
               ],
             ),
@@ -49,21 +55,34 @@ class _CreateConditionsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width - 32,
-      height: 184,
-      child: ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          itemCount: conditions.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-              child: _ConditionsCard(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        width: MediaQuery.of(context).size.width - 32,
+        color: AppColors.background,
+        height: 184,
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            itemCount: conditions.length,
+            itemBuilder: (BuildContext context, int index) {
+              return _ConditionsCard(
                 index: index,
-              ),
-            );
-          }),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 24 + 12),
+                child: Divider(
+                  thickness: 1,
+                ),
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }
@@ -86,31 +105,23 @@ class _ConditionsCard extends StatelessWidget {
         width: 12,
       ),
       Expanded(
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(
-                      width: 1,
-                      color: AppColors.grey.withOpacity(
-                          index == (conditions.length - 1) ? 0.0 : 0.15)))),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(conditions[index].title,
-                        style: TextStyleService.headline2(
-                            color: AppColors.graphyte)),
-                    Text(conditions[index].description,
-                        style: TextStyleService.headline3(
-                            fontweight: FontWeight.w400)),
-                  ],
-                ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(conditions[index].title,
+                      style: TextStyleService.headline2(
+                          color: AppColors.graphyte)),
+                  Text(conditions[index].description,
+                      style: TextStyleService.headline3(
+                          fontweight: FontWeight.w400)),
+                ],
               ),
-              Image.asset(conditions[index].icon)
-            ],
-          ),
+            ),
+            Image.asset(conditions[index].icon),
+          ],
         ),
       ),
     ]);

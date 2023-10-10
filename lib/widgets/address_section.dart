@@ -18,7 +18,7 @@ class CreateAddressSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
           child: Text(hotelName, style: TextStyleService.headline1()),
         ),
         GestureDetector(
