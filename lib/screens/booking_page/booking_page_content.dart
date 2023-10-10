@@ -11,8 +11,10 @@ import 'package:booking/screens/booking_page/price_section.dart';
 import 'package:booking/screens/booking_page/tourist_list.dart';
 import 'package:booking/screens/hotel_page_main_content.dart';
 import 'package:booking/screens/paid_page/paid_page.dart';
+import 'package:booking/services/ui_services/custom_text.dart';
 
 import 'package:booking/widgets/address_section.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:booking/widgets/custom_button.dart';
 
 import 'package:booking/widgets/rating_section.dart';
@@ -62,7 +64,7 @@ class BookingPageContent extends StatelessWidget {
       ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: Container(
-          color: Colors.white,
+          color: AppColors.white,
           height: 120,
           width: MediaQuery.of(context).size.width,
           child: Padding(
@@ -110,15 +112,16 @@ class BookingPageContent extends StatelessWidget {
           height: 88,
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
-              color: Colors.white,
+              color: AppColors.black,
               border: Border(
-                  top: BorderSide(
-                      width: 1, color: Color.fromARGB(255, 232, 233, 236)))),
+                  top: BorderSide(width: 1, color: AppColors.lightBlue))),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
             child: CustomButton(
                 buttonText: 'Oплатить $price ₽',
                 onPressed: () {
+                  controllerProvider.setButtonTapped(true);
+
                   if (controllerProvider.areAllFieldsFilled() &&
                       !controllerProvider.isEmpty()) {
                     // All fields are filled, perform the action
@@ -147,23 +150,20 @@ class AddTouristWidget extends StatelessWidget {
       child: Container(
         height: 58,
         width: MediaQuery.of(context).size.width,
-        color: Colors.white,
+        color: AppColors.white,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Добавить туриста',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22,
-                      fontFamily: 'SFPro',
-                      fontWeight: FontWeight.w500,
-                      height: 26.4 / 22)),
+              Text(
+                'Добавить туриста',
+                style: TextStyleService.headline1(),
+              ),
               ExpandButton(
                 icon: Icons.add,
-                iconColor: Colors.white,
-                containerColor: const Color.fromARGB(255, 13, 114, 255),
+                iconColor: AppColors.white,
+                containerColor: AppColors.blue,
                 onTap: () {
                   touristProvider
                       .addToTourists(touristProvider.tourists.length + 1);

@@ -1,6 +1,8 @@
-import 'package:booking/screens/booking_page/email_text_field.dart';
-import 'package:booking/screens/booking_page/phone_text_field.dart';
-import 'package:booking/widgets/custom_text_field.dart';
+import 'package:booking/screens/booking_page/text_fields/email_text_field.dart';
+import 'package:booking/screens/booking_page/text_fields/phone_text_field.dart';
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
+
 import 'package:flutter/material.dart';
 
 class CreateBuyerInformation extends StatelessWidget {
@@ -12,40 +14,35 @@ class CreateBuyerInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 232,
-        color: Colors.white,
-        child: const Padding(
+        color: AppColors.black,
+        child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Информация о покупателе',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22,
-                      fontFamily: 'SFPro',
-                      fontWeight: FontWeight.w500,
-                      height: 26.4 / 22)),
+              Text(
+                'Информация о покупателе',
+                style: TextStyleService.headline1(),
+              ),
               SizedBox(
                 height: 20,
               ),
-              CustomTextField(
-                textField: PhoneTextField(),
-                hintText: 'Номер телефона',
-                errorText: null,
+              PhoneTextField(
+                labelText: 'Номер телефона',
               ),
               SizedBox(
                 height: 8,
               ),
-              EmailTextField(),
+              EmailTextField(
+                labelText: 'Почта',
+              ),
               SizedBox(height: 8),
               Text(
-                  'Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 130, 135, 150),
-                      fontSize: 14,
-                      fontFamily: 'SFPro',
-                      fontWeight: FontWeight.w400,
-                      height: 16.8 / 14))
+                'Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту',
+                style: TextStyleService.headline1(
+                  color: AppColors.grey,
+                ),
+              )
             ],
           ),
         ));

@@ -1,3 +1,4 @@
+import 'package:booking/widgets/app_colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
             borderRadius: BorderRadius.circular(5),
             child: Container(
               height: 17,
-              color: Colors.white,
+              color: AppColors.white,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: imgList.asMap().entries.map((entry) {
@@ -66,8 +67,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: _currentIndex == entry.key
-                                ? Colors.black
-                                : Colors.black
+                                ? AppColors.black
+                                : AppColors.black
                                     .withOpacity(1 / (entry.key + 5))),
                       ),
                     ),

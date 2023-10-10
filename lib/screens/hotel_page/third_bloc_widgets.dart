@@ -1,5 +1,6 @@
 import 'package:booking/app_logic/rooms_bloc/rooms_bloc.dart';
 import 'package:booking/screens/rooms_info_page/rooms_information_screen.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:booking/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -14,10 +15,9 @@ class ThirdBlocWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          color: Colors.white,
-          border: Border(
-              top: BorderSide(
-                  width: 1, color: Color.fromARGB(255, 232, 233, 236)))),
+          color: AppColors.white,
+          border:
+              Border(top: BorderSide(width: 1, color: AppColors.lightBlue))),
       width: MediaQuery.of(context).size.width,
       height: 88,
       child: Padding(

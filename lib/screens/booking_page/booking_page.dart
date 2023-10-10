@@ -3,6 +3,7 @@ import 'package:booking/app_logic/booking_bloc/booking_bloc_event.dart';
 import 'package:booking/app_logic/booking_bloc/booking_bloc_state.dart';
 import 'package:booking/app_logic/controller_provider.dart';
 import 'package:booking/screens/booking_page/booking_page_content.dart';
+import 'package:booking/widgets/app_colors.dart';
 
 import 'package:booking/widgets/fading_indicator.dart';
 import 'package:flutter/material.dart';
@@ -31,15 +32,10 @@ class _BookingPageState extends State<BookingPage> {
         Provider.of<TextFieldControllerProvider>(context, listen: false);
     return BlocBuilder<BookingBloc, BookingState>(builder: (context, state) {
       return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 246, 246, 249),
+        backgroundColor: AppColors.background,
         appBar: AppBar(
-          surfaceTintColor: Colors.transparent,
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-          centerTitle: true,
           title: const Text(
             'Бронирование',
-            style: TextStyle(fontSize: 18, fontFamily: 'SFPro'),
           ),
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),

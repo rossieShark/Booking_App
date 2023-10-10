@@ -3,6 +3,7 @@ import 'package:booking/app_logic/hotel_page_bloc/hotel_page_event.dart';
 import 'package:booking/app_logic/hotel_page_bloc/hotel_page_state.dart';
 
 import 'package:booking/screens/hotel_page_main_content.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:booking/widgets/fading_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -24,15 +25,10 @@ class _HotelPageState extends State<HotelPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<HotelBloc, HotelState>(builder: (context, state) {
       return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 246, 246, 249),
+        backgroundColor: AppColors.background,
         appBar: AppBar(
-          surfaceTintColor: Colors.transparent,
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-          centerTitle: true,
           title: const Text(
             'Отель',
-            style: TextStyle(fontSize: 18, fontFamily: 'SFPro'),
           ),
         ),
         body: state.map(

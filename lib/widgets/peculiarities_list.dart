@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CreatePeculiaritiesSection extends StatelessWidget {
@@ -24,20 +26,15 @@ class CreatePeculiaritiesSection extends StatelessWidget {
             children: currentPeculiarities.map((peculiarity) {
               return Container(
                 padding: const EdgeInsets.only(right: 8, bottom: 8),
-                color: const Color.fromARGB(255, 251, 251, 252),
+                color: AppColors.blueWhite,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text(
-                    peculiarity,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'SFPro',
-                      fontWeight: FontWeight.w500,
-                      height:
-                          1.2, // You can use 1.2 for a line height of 19.2px
-                      color: Color.fromARGB(255, 130, 135, 150),
-                    ),
-                  ),
+                  child: Text(peculiarity,
+                      style: TextStyleService.headline2(
+                        color: AppColors.grey,
+                      ) // You can use 1.2 for a line height of 19.2px
+
+                      ),
                 ),
               );
             }).toList(),

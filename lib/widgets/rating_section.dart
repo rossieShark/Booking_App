@@ -1,3 +1,5 @@
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CreateRatingSection extends StatelessWidget {
@@ -14,20 +16,15 @@ class CreateRatingSection extends StatelessWidget {
       child: Container(
         width: 149,
         height: 29,
-        color: const Color.fromARGB(255, 255, 199, 0).withOpacity(0.2),
+        color: AppColors.yellow.withOpacity(0.2),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: Row(children: [
-            const Icon(Icons.star,
-                size: 15, color: Color.fromARGB(255, 255, 168, 0)),
-            Text(
-              "$rating $ratingName",
-              style: const TextStyle(
-                  color: Color.fromARGB(255, 255, 168, 0),
-                  fontSize: 16,
-                  fontFamily: 'SFPro',
-                  fontWeight: FontWeight.w500),
-            ),
+            const Icon(Icons.star, size: 15, color: AppColors.gold),
+            Text("$rating $ratingName",
+                style: TextStyleService.headline2(
+                  color: AppColors.gold,
+                )),
           ]),
         ),
       ),

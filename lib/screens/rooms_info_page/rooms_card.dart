@@ -1,8 +1,11 @@
 import 'package:booking/app_logic/booking_bloc/booking_bloc.dart';
 import 'package:booking/models/rooms_model/room_model.dart';
+import 'package:booking/resources/resources.dart';
 import 'package:booking/screens/booking_page/booking_page.dart';
 
 import 'package:booking/screens/photo_carousel.dart';
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:booking/widgets/custom_button.dart';
 import 'package:booking/widgets/peculiarities_list.dart';
 import 'package:booking/widgets/price_section.dart';
@@ -29,7 +32,7 @@ class RoomsCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: Container(
           height: 539,
-          color: Colors.white,
+          color: AppColors.white,
           width: MediaQuery.of(context).size.width,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -41,12 +44,7 @@ class RoomsCard extends StatelessWidget {
                       CarouselWithIndicator(images: roomsList[index].images)),
               Text(
                 roomsList[index].name,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 22,
-                    fontFamily: 'SFPro',
-                    height: 26.4 / 22,
-                    fontWeight: FontWeight.w500),
+                style: TextStyleService.headline1(),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
@@ -56,30 +54,22 @@ class RoomsCard extends StatelessWidget {
               IntrinsicWidth(
                 child: Container(
                   height: 29,
-                  color:
-                      const Color.fromARGB(255, 13, 114, 255).withOpacity(0.1),
+                  color: AppColors.blue.withOpacity(0.1),
                   child: Row(
                     children: [
                       const SizedBox(
                         width: 10,
                       ),
-                      const Text(
-                        'Подробнее о номере',
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 13, 114, 255),
-                            fontSize: 16,
-                            fontFamily: 'SFPro',
-                            height: 19.2 / 16,
-                            fontWeight: FontWeight.w500),
-                      ),
+                      Text('Подробнее о номере',
+                          style: TextStyleService.headline2(
+                              color: AppColors.blue)),
                       GestureDetector(
                           onTap: () {},
                           child: SizedBox(
                               width: 24,
                               height: 24,
-                              child: Image.asset('assets/images/forward.png',
-                                  color: const Color.fromARGB(
-                                      255, 13, 114, 255)))),
+                              child: Image.asset(AppImages.forward,
+                                  color: AppColors.blue))),
                     ],
                   ),
                 ),

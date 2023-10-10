@@ -1,4 +1,6 @@
 import 'package:booking/models/booking_info_table_model.dart';
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CreateInformationTable extends StatelessWidget {
@@ -13,7 +15,7 @@ class CreateInformationTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 280,
-      color: Colors.white,
+      color: AppColors.white,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
         child: Table(
@@ -29,25 +31,20 @@ class CreateInformationTable extends StatelessWidget {
                   TableCell(
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 8, 0, 8),
-                      child: Text(tableContent[index].name,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 130, 135, 150),
-                              fontSize: 16,
-                              fontFamily: 'SFPro',
-                              fontWeight: FontWeight.w400,
-                              height: 19.2 / 16)),
+                      child: Text(
+                        tableContent[index].name,
+                        style: TextStyleService.headline2(
+                            color: AppColors.grey, fontweight: FontWeight.w400),
+                      ),
                     ),
                   ),
                   TableCell(
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 8, 16, 8),
                       child: Text(tableContent[index].description,
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontFamily: 'SFPro',
-                              fontWeight: FontWeight.w400,
-                              height: 19.2 / 16)),
+                          style: TextStyleService.headline2(
+                              color: AppColors.black,
+                              fontweight: FontWeight.w400)),
                     ),
                   ),
                 ],

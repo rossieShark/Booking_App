@@ -1,5 +1,7 @@
 import 'package:booking/models/hotel_model/hotel_model.dart';
 import 'package:booking/screens/hotel_page_main_content.dart';
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:booking/widgets/peculiarities_list.dart';
 import 'package:flutter/material.dart';
 
@@ -24,18 +26,16 @@ class SecondBlocWidgets extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Об отеле',
-                    style: TextStyle(fontSize: 22, color: Colors.black)),
+                Text(
+                  'Об отеле',
+                  style: TextStyleService.headline1(),
+                ),
                 const SizedBox(
                   height: 16,
                 ),
                 CreatePeculiaritiesSection(peculiarities: peculiarities),
                 Text(hotelInfo.aboutTheHotel.description,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'SFPro',
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black)),
+                    style: TextStyleService.headline2(color: AppColors.black)),
                 const _CreateConditionsSection()
               ],
             ),
@@ -76,7 +76,12 @@ class _ConditionsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisSize: MainAxisSize.max, children: [
-      Image.asset(conditions[index].image),
+      Image.asset(
+        conditions[index].image,
+        width: 24,
+        height: 24,
+        fit: BoxFit.fill,
+      ),
       const SizedBox(
         width: 12,
       ),
@@ -86,9 +91,8 @@ class _ConditionsCard extends StatelessWidget {
               border: Border(
                   bottom: BorderSide(
                       width: 1,
-                      color: const Color.fromARGB(255, 130, 135, 150)
-                          .withOpacity(
-                              index == (conditions.length - 1) ? 0.0 : 0.15)))),
+                      color: AppColors.grey.withOpacity(
+                          index == (conditions.length - 1) ? 0.0 : 0.15)))),
           child: Row(
             children: [
               Expanded(
@@ -96,17 +100,11 @@ class _ConditionsCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(conditions[index].title,
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'SFPro',
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromARGB(255, 44, 48, 53))),
+                        style: TextStyleService.headline2(
+                            color: AppColors.graphyte)),
                     Text(conditions[index].description,
-                        style: const TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'SFPro',
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 130, 135, 150))),
+                        style: TextStyleService.headline3(
+                            fontweight: FontWeight.w400)),
                   ],
                 ),
               ),

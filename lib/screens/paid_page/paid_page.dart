@@ -1,6 +1,9 @@
 import 'dart:math';
 
-import 'package:booking/main.dart';
+import 'package:booking/booking_app.dart';
+import 'package:booking/resources/resources.dart';
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
 
 import 'package:booking/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -35,10 +38,10 @@ class PaidPage extends StatelessWidget {
                     width: 94,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color.fromARGB(255, 246, 246, 249),
+                      color: AppColors.background,
                     ),
                     child: Image.asset(
-                      'assets/images/party.png',
+                      AppImages.party,
                       height: 44,
                       width: 44,
                     ),
@@ -46,15 +49,9 @@ class PaidPage extends StatelessWidget {
                   const SizedBox(
                     height: 32,
                   ),
-                  const Text(
+                  Text(
                     'Ваш заказ принят в работу',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontFamily: 'SFPro',
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                      height: 26.4 / 22,
-                    ),
+                    style: TextStyleService.headline1(),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
@@ -64,12 +61,9 @@ class PaidPage extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(23, 0, 23, 0),
                     child: Text(
                       'Подтверждение заказа №${randomNumber()} может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'SFPro',
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromARGB(255, 130, 135, 150),
-                        height: 19.2 / 16,
+                      style: TextStyleService.headline2(
+                        fontweight: FontWeight.w400,
+                        color: AppColors.grey,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -85,10 +79,9 @@ class PaidPage extends StatelessWidget {
             height: 88,
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
-                color: Colors.white,
+                color: AppColors.white,
                 border: Border(
-                    top: BorderSide(
-                        width: 1, color: Color.fromARGB(255, 232, 233, 236)))),
+                    top: BorderSide(width: 1, color: AppColors.lightBlue))),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
               child: CustomButton(
@@ -96,7 +89,7 @@ class PaidPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => const MyApp()),
+                    MaterialPageRoute(builder: (context) => const BookingApp()),
                     (route) => false,
                   );
                 },

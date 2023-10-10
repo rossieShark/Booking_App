@@ -1,6 +1,8 @@
 import 'package:booking/models/booking_model.dart/booking_model.dart';
 import 'package:booking/models/price_model.dart';
 import 'package:booking/screens/hotel_page_main_content.dart';
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class PriceSection extends StatelessWidget {
@@ -24,7 +26,7 @@ class PriceSection extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       child: Container(
           height: 156,
-          color: Colors.white,
+          color: AppColors.white,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
             child: ListView.builder(
@@ -37,27 +39,20 @@ class PriceSection extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          totalPrices[index].name,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 130, 135, 150),
-                              fontSize: 16,
-                              fontFamily: 'SFPro',
-                              fontWeight: FontWeight.w400,
-                              height: 19.2 / 16),
-                        ),
+                        Text(totalPrices[index].name,
+                            style: TextStyleService.headline2(
+                                color: AppColors.grey,
+                                fontweight: FontWeight.w400)),
                         Text(
                           '${formatNumberWithSpace(totalPrices[index].price)} ₽',
-                          style: TextStyle(
-                              color: index == (totalPrices.length - 1)
-                                  ? const Color.fromARGB(255, 13, 114, 255)
-                                  : Colors.black,
-                              fontSize: 16,
-                              fontFamily: 'SFPro',
-                              fontWeight: index == (totalPrices.length - 1)
-                                  ? FontWeight.w600
-                                  : FontWeight.w400,
-                              height: 19.2 / 16),
+                          style: TextStyleService.headline2(
+                            color: index == (totalPrices.length - 1)
+                                ? AppColors.blue
+                                : AppColors.black,
+                            fontweight: index == (totalPrices.length - 1)
+                                ? FontWeight.w600
+                                : FontWeight.w400,
+                          ),
                         ),
                       ],
                     ),

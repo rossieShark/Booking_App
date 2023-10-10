@@ -1,5 +1,6 @@
 import 'package:booking/models/hotel_conditions_model.dart';
 import 'package:booking/models/hotel_model/hotel_model.dart';
+import 'package:booking/resources/resources.dart';
 import 'package:booking/screens/hotel_page/first_bloc_widgets.dart';
 import 'package:booking/screens/hotel_page/second_bloc_widgets.dart';
 import 'package:booking/screens/hotel_page/third_bloc_widgets.dart';
@@ -69,17 +70,17 @@ List<String> peculiarities = [
 List<HotelConditions> conditions = [
   const HotelConditions(
       description: 'Самое необходимое',
-      icon: 'assets/images/forward.png',
-      image: 'assets/images/emoji-happy.png',
+      icon: AppImages.forward,
+      image: AppImages.happy,
       title: 'Удобства'),
   const HotelConditions(
       description: 'Самое необходимое',
-      icon: 'assets/images/forward.png',
-      image: 'assets/images/tick-square.png',
+      icon: AppImages.forward,
+      image: AppImages.tick,
       title: 'Что включено?'),
   const HotelConditions(
       description: 'Самое необходимое',
-      icon: 'assets/images/forward.png',
-      image: 'assets/images/close-square.png',
+      icon: AppImages.forward,
+      image: AppImages.close,
       title: 'Что не включено?'),
 ];

@@ -1,6 +1,7 @@
 import 'package:booking/models/hotel_model/hotel_model.dart';
 import 'package:booking/screens/photo_carousel.dart';
 import 'package:booking/widgets/address_section.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:booking/widgets/price_section.dart';
 import 'package:booking/widgets/rating_section.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class FirstBlocWidgets extends StatelessWidget {
       borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
       child: Container(
-        color: Colors.white,
+        color: AppColors.white,
         height: 530 - 101,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),

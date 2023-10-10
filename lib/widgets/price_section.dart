@@ -1,4 +1,6 @@
 import 'package:booking/screens/hotel_page_main_content.dart';
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CreatePriceSection extends StatelessWidget {
@@ -20,29 +22,17 @@ class CreatePriceSection extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
-          child: Text(
-            '$prePrice${formatNumberWithSpace(price)}',
-            style: const TextStyle(
-                color: Colors.black,
-                fontSize: 30,
-                fontFamily: 'SFPro',
-                fontWeight: FontWeight.w600),
-          ),
+          child: Text('$prePrice${formatNumberWithSpace(price)}',
+              style: TextStyleService.largeText()),
         ),
         const SizedBox(
           width: 8,
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 19),
-          child: Text(
-            priceFor.toLowerCase(),
-            style: const TextStyle(
-              color: Color.fromARGB(255, 130, 135, 150),
-              fontSize: 16,
-              fontFamily: 'SFPro',
-              fontWeight: FontWeight.w400,
-            ),
-          ),
+          child: Text(priceFor.toLowerCase(),
+              style: TextStyleService.headline2(
+                  color: AppColors.grey, fontweight: FontWeight.w400)),
         )
       ],
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class TextFieldControllerProvider extends ChangeNotifier {
   final TextFieldControllerManager manager = TextFieldControllerManager();
-
+  bool isButtonTapped = false;
   void addController(TextEditingController controller) {
     manager.addController(controller);
     notifyListeners();
@@ -19,6 +19,11 @@ class TextFieldControllerProvider extends ChangeNotifier {
 
   bool isEmpty() {
     return manager.isEmpty();
+  }
+
+  void setButtonTapped(bool value) {
+    isButtonTapped = value;
+    notifyListeners();
   }
 }
 

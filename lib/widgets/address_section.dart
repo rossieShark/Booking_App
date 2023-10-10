@@ -1,3 +1,5 @@
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CreateAddressSection extends StatelessWidget {
@@ -17,29 +19,14 @@ class CreateAddressSection extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-          child: Text(
-            hotelName,
-            style: const TextStyle(
-                color: Colors.black,
-                fontSize: 22,
-                fontFamily: 'SFPro',
-                fontWeight: FontWeight.w500,
-                height: 26.4 / 22),
-          ),
+          child: Text(hotelName, style: TextStyleService.headline1()),
         ),
         GestureDetector(
           onTap: () {
             print('address tapped');
           },
-          child: Text(
-            hotelAddress,
-            style: const TextStyle(
-                color: Color.fromARGB(255, 13, 114, 255),
-                fontSize: 14,
-                fontFamily: 'SFPro',
-                fontWeight: FontWeight.w500,
-                height: 16.8 / 22),
-          ),
+          child: Text(hotelAddress,
+              style: TextStyleService.headline3(color: AppColors.blue)),
         ),
       ],
     );

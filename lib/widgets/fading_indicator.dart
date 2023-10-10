@@ -1,3 +1,4 @@
+import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -78,7 +79,7 @@ class _CustomFadingCircleIndicatorState
 
   Widget _itemBuilder(int index) => const DecoratedBox(
         decoration: BoxDecoration(
-          color: Color.fromARGB(239, 208, 63, 112),
+          color: AppColors.darkBlue,
           shape: BoxShape.circle,
         ),
       );

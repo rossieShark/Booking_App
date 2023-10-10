@@ -1,3 +1,5 @@
+import 'package:booking/services/ui_services/custom_text.dart';
+import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -12,15 +14,14 @@ class CustomButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       child: Container(
           width: MediaQuery.of(context).size.width - 32,
-          color: const Color.fromARGB(255, 13, 114, 255),
+          color: AppColors.blue,
           child: TextButton(
             onPressed: onPressed,
             child: Text(buttonText,
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'SFPro',
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white)),
+                style: TextStyleService.headline2(
+                    color: AppColors.white,
+                    fontweight: FontWeight.w400,
+                    height: 17.6 / 16)),
           )),
     );
   }
