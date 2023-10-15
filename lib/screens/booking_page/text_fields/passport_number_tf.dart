@@ -1,4 +1,5 @@
 import 'package:booking/app_logic/controller_provider.dart';
+import 'package:booking/app_logic/test_controller.dart';
 import 'package:booking/screens/booking_page/text_fields/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -16,12 +17,10 @@ class PassportNumberTextField extends StatefulWidget {
       _PassportNumberTextFieldState();
 }
 
-class _PassportNumberTextFieldState extends State<PassportNumberTextField>
-    with AutomaticKeepAliveClientMixin {
+class _PassportNumberTextFieldState extends State<PassportNumberTextField> {
   final _controller = TextEditingController();
   late FocusNode _focusNode;
   bool _hasFocus = false;
-  bool _isValid = false;
 
   @override
   void initState() {
@@ -32,72 +31,37 @@ class _PassportNumberTextFieldState extends State<PassportNumberTextField>
       setState(() {
         _hasFocus = _focusNode.hasFocus;
       });
-      // if (!_focusNode.hasFocus) {
-      //   validateEmail(_controller.text);
-      // }
-    });
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      final controllerProvider =
-          Provider.of<TextFieldControllerProvider>(context, listen: false);
-      controllerProvider.addController(_controller);
     });
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    _focusNode.dispose(); // Dispose of the FocusNode to prevent memory leaks
+    _focusNode.dispose();
     super.dispose();
-  }
-
-  void validate() {
-    setState(() {
-      _isValid = _controller.text.isNotEmpty;
-    });
-  }
-
-  bool isValid() {
-    final controllerProvider =
-        Provider.of<TextFieldControllerProvider>(context, listen: true);
-    if (controllerProvider.isButtonTapped) {
-      print(controllerProvider.isButtonTapped);
-      if (_isValid) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return true;
-    }
-  }
-
-  void onTap() {
-    setState(() {
-      _isValid = true;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    final controllerProvider =
+        Provider.of<TextFieldControllerProvider2>(context, listen: true);
+    final isValid = controllerProvider.isValid(_controller);
 
     return TextFieldContainer(
-      isValid: isValid,
+      isValid: () {
+        return isValid;
+      },
       child: CustomTextField(
         controller: _controller,
         keyboardType: TextInputType.number,
 
         labelText: widget.labelText,
         regex: RegExp(r'[\d]+'),
-
-        onSaved: validate,
-        onTap: onTap,
+        onSaved: () {},
+        onTap: () {},
         focusNode: _focusNode,
         hasFocus: _hasFocus, // Assign the FocusNode to the field
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

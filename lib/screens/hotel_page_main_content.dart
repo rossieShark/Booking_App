@@ -11,10 +11,10 @@ class HotelPageMainContent extends StatefulWidget {
   const HotelPageMainContent({super.key, required this.hotelInfo});
 
   @override
-  State<HotelPageMainContent> createState() => _HotelPageMainContentState();
+  State<HotelPageMainContent> createState() => HotelPageMainContentState();
 }
 
-class _HotelPageMainContentState extends State<HotelPageMainContent> {
+class HotelPageMainContentState extends State<HotelPageMainContent> {
   final hotelName = 'Steigenberg Makadi';
   @override
   void initState() {
@@ -28,7 +28,6 @@ class _HotelPageMainContentState extends State<HotelPageMainContent> {
       children: [
         FirstBlocWidgets(
           hotelInfo: widget.hotelInfo,
-          hotelName: hotelName,
         ),
         const SizedBox(
           height: 8,
@@ -38,7 +37,6 @@ class _HotelPageMainContentState extends State<HotelPageMainContent> {
           height: 12,
         ),
         ThirdBlocWidget(
-          hotelName: hotelName,
           hotelAddress: widget.hotelInfo.adress,
         )
       ],

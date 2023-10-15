@@ -14,7 +14,7 @@ class CreateBuyerInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 232,
-        color: AppColors.black,
+        color: AppColors.white,
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
@@ -39,7 +39,7 @@ class CreateBuyerInformation extends StatelessWidget {
               SizedBox(height: 8),
               Text(
                 'Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту',
-                style: TextStyleService.headline1(
+                style: TextStyleService.headline3(
                   color: AppColors.grey,
                 ),
               )

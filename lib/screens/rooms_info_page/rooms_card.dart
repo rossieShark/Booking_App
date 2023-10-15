@@ -4,6 +4,7 @@ import 'package:booking/resources/resources.dart';
 import 'package:booking/screens/booking_page/booking_page.dart';
 
 import 'package:booking/screens/photo_carousel.dart';
+import 'package:booking/screens/rooms_info_page/rooms_information_screen.dart';
 import 'package:booking/services/ui_services/custom_text.dart';
 import 'package:booking/widgets/app_colors.dart';
 import 'package:booking/widgets/custom_button.dart';
@@ -13,19 +14,21 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class RoomsCard extends StatelessWidget {
-  final String hotelName;
-  final String hotelAddress;
   final List<Rooms> roomsList;
   final int index;
 
-  const RoomsCard(
-      {super.key,
-      required this.roomsList,
-      required this.index,
-      required this.hotelAddress,
-      required this.hotelName});
+  const RoomsCard({super.key, required this.roomsList, required this.index});
   @override
   Widget build(BuildContext context) {
+    final name = context
+        .findAncestorStateOfType<RoomsInformationPageState>()
+        ?.widget
+        .hotelName;
+
+    final address = context
+        .findAncestorStateOfType<RoomsInformationPageState>()
+        ?.widget
+        .hotelAddress;
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
       child: ClipRRect(
@@ -88,8 +91,8 @@ class RoomsCard extends StatelessWidget {
                         builder: (context) => BlocProvider<BookingBloc>(
                             create: (_) => GetIt.I(),
                             child: BookingPage(
-                              hotelAddress: hotelAddress,
-                              hotelName: hotelName,
+                              hotelAddress: address ?? "",
+                              hotelName: name ?? "",
                             )),
                       ),
                     );

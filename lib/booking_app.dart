@@ -1,4 +1,5 @@
 import 'package:booking/app_logic/index.dart';
+import 'package:booking/app_logic/test_controller.dart';
 import 'package:booking/screens/hotel_page.dart';
 import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ class BookingApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TouristProvider()),
         ChangeNotifierProvider(
             create: (context) => TextFieldControllerProvider()),
+        ChangeNotifierProvider(
+            create: (context) => TextFieldControllerProvider2()),
         // Add other providers if needed
       ],
       child: MaterialApp(

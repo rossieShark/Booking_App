@@ -1,4 +1,5 @@
 import 'package:booking/app_logic/rooms_bloc/rooms_bloc.dart';
+import 'package:booking/screens/hotel_page_main_content.dart';
 import 'package:booking/screens/rooms_info_page/rooms_information_screen.dart';
 import 'package:booking/widgets/app_colors.dart';
 import 'package:booking/widgets/custom_button.dart';
@@ -6,13 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class ThirdBlocWidget extends StatelessWidget {
-  final String hotelName;
   final String hotelAddress;
-  const ThirdBlocWidget(
-      {super.key, required this.hotelName, required this.hotelAddress});
+  const ThirdBlocWidget({super.key, required this.hotelAddress});
 
   @override
   Widget build(BuildContext context) {
+    final name =
+        context.findAncestorStateOfType<HotelPageMainContentState>()?.hotelName;
     return Container(
       decoration: const BoxDecoration(
           color: AppColors.white,
@@ -30,7 +31,7 @@ class ThirdBlocWidget extends StatelessWidget {
                   builder: (context) => BlocProvider<RoomsBloc>(
                       create: (_) => GetIt.I(),
                       child: RoomsInformationPage(
-                        hotelName: hotelName,
+                        hotelName: name ?? '',
                         hotelAddress: hotelAddress,
                       )),
                 ),

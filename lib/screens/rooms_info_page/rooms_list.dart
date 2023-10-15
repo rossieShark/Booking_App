@@ -4,13 +4,11 @@ import 'package:flutter/widgets.dart';
 
 class RoomsListView extends StatelessWidget {
   final List<Rooms> roomsList;
-  final String hotelName;
-  final String hotelAddress;
-  const RoomsListView(
-      {super.key,
-      required this.roomsList,
-      required this.hotelAddress,
-      required this.hotelName});
+
+  const RoomsListView({
+    super.key,
+    required this.roomsList,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +18,7 @@ class RoomsListView extends StatelessWidget {
         padding: EdgeInsets.zero,
         itemCount: roomsList.length,
         itemBuilder: (BuildContext context, int index) {
-          return RoomsCard(
-            roomsList: roomsList,
-            index: index,
-            hotelAddress: hotelAddress,
-            hotelName: hotelName,
-          );
+          return RoomsCard(roomsList: roomsList, index: index);
         });
   }
 }

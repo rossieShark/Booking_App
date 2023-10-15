@@ -1,4 +1,5 @@
 import 'package:booking/models/hotel_model/hotel_model.dart';
+import 'package:booking/screens/hotel_page_main_content.dart';
 import 'package:booking/screens/photo_carousel.dart';
 import 'package:booking/widgets/address_section.dart';
 import 'package:booking/widgets/app_colors.dart';
@@ -7,13 +8,14 @@ import 'package:booking/widgets/rating_section.dart';
 import 'package:flutter/material.dart';
 
 class FirstBlocWidgets extends StatelessWidget {
-  const FirstBlocWidgets(
-      {super.key, required this.hotelInfo, required this.hotelName});
-  final String hotelName;
+  const FirstBlocWidgets({super.key, required this.hotelInfo});
+
   final HotelResponse hotelInfo;
 
   @override
   Widget build(BuildContext context) {
+    final name =
+        context.findAncestorStateOfType<HotelPageMainContentState>()?.hotelName;
     return ClipRRect(
       borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
@@ -42,7 +44,9 @@ class FirstBlocWidgets extends StatelessWidget {
                 height: 8,
               ),
               CreateAddressSection(
-                  hotelAddress: hotelInfo.adress, hotelName: hotelName),
+                hotelAddress: hotelInfo.adress,
+                hotelName: name ?? "",
+              ),
               const SizedBox(
                 height: 16,
               ),

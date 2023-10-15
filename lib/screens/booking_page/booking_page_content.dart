@@ -1,4 +1,5 @@
 import 'package:booking/app_logic/controller_provider.dart';
+import 'package:booking/app_logic/test_controller.dart';
 import 'package:booking/app_logic/tourist_provider/tourist_provider.dart';
 import 'package:booking/models/booking_info_table_model.dart';
 import 'package:booking/models/booking_model.dart/booking_model.dart';
@@ -39,10 +40,14 @@ class BookingPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String? name =
+        context.findAncestorStateOfType<HotelPageMainContentState>()?.hotelName;
+    print(name);
     final controllerProvider =
         Provider.of<TextFieldControllerProvider>(context, listen: false);
     final price = formatNumberWithSpace(_calculateTotalPrice());
-
+    final controllerProvider2 =
+        Provider.of<TextFieldControllerProvider2>(context, listen: false);
     final touristProvider = Provider.of<TouristProvider>(context);
     final List<BookingIngoTable> tableContent = [
       BookingIngoTable(name: 'Вылет из', description: bookingInfo.departure),
@@ -77,8 +82,8 @@ class BookingPageContent extends StatelessWidget {
                   ratingName: bookingInfo.ratingName,
                 ),
                 CreateAddressSection(
-                  hotelAddress: hotelAddress,
                   hotelName: hotelName,
+                  hotelAddress: hotelAddress,
                 ),
               ],
             ),
@@ -112,7 +117,7 @@ class BookingPageContent extends StatelessWidget {
           height: 88,
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
-              color: AppColors.black,
+              color: AppColors.white,
               border: Border(
                   top: BorderSide(width: 1, color: AppColors.lightBlue))),
           child: Padding(
@@ -120,10 +125,9 @@ class BookingPageContent extends StatelessWidget {
             child: CustomButton(
                 buttonText: 'Oплатить $price ₽',
                 onPressed: () {
-                  controllerProvider.setButtonTapped(true);
+                  controllerProvider2.setButtonTapped(true);
 
-                  if (controllerProvider.areAllFieldsFilled() &&
-                      !controllerProvider.isEmpty()) {
+                  if (controllerProvider2.isAllControllersValid()) {
                     // All fields are filled, perform the action
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => const PaidPage()),

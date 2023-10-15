@@ -13,10 +13,10 @@ class RoomsInformationPage extends StatefulWidget {
       {super.key, required this.hotelName, required this.hotelAddress});
 
   @override
-  State<RoomsInformationPage> createState() => _RoomsInformationPageState();
+  State<RoomsInformationPage> createState() => RoomsInformationPageState();
 }
 
-class _RoomsInformationPageState extends State<RoomsInformationPage> {
+class RoomsInformationPageState extends State<RoomsInformationPage> {
   @override
   void initState() {
     super.initState();
@@ -36,10 +36,7 @@ class _RoomsInformationPageState extends State<RoomsInformationPage> {
         body: state.map(
           loading: (_) => const Center(child: CustomFadingCircleIndicator()),
           noResults: (_) => const Text('No Results'),
-          loaded: (loadEvent) => RoomsListView(
-              roomsList: loadEvent.rooms,
-              hotelAddress: widget.hotelAddress,
-              hotelName: widget.hotelName),
+          loaded: (loadEvent) => RoomsListView(roomsList: loadEvent.rooms),
         ),
       );
     });

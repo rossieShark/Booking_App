@@ -1,4 +1,5 @@
 import 'package:booking/app_logic/controller_provider.dart';
+import 'package:booking/app_logic/test_controller.dart';
 import 'package:booking/screens/booking_page/text_fields/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -17,7 +18,6 @@ class _DateTextFieldState extends State<DateTextField> {
   final _controller = TextEditingController();
   late FocusNode _focusNode;
   bool _hasFocus = false;
-  bool _isValid = false;
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -33,7 +33,6 @@ class _DateTextFieldState extends State<DateTextField> {
       final formattedDate = DateFormat('yyyy-MM-dd').format(picked);
       setState(() {
         _controller.text = formattedDate;
-        _isValid = true;
       });
     }
   }
@@ -47,15 +46,6 @@ class _DateTextFieldState extends State<DateTextField> {
       setState(() {
         _hasFocus = _focusNode.hasFocus;
       });
-      if (!_focusNode.hasFocus) {
-        isValid();
-      }
-    });
-
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      final controllerProvider =
-          Provider.of<TextFieldControllerProvider>(context, listen: false);
-      controllerProvider.addController(_controller);
     });
   }
 
@@ -66,43 +56,24 @@ class _DateTextFieldState extends State<DateTextField> {
     super.dispose();
   }
 
-  void validate() {
-    setState(() {
-      _isValid = _controller.text.isNotEmpty;
-    });
-  }
-
-  bool isValid() {
-    final controllerProvider =
-        Provider.of<TextFieldControllerProvider>(context, listen: false);
-    if (controllerProvider.isButtonTapped) {
-      print(controllerProvider.isButtonTapped);
-      if (_isValid) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return true;
-    }
-  }
-
   void onTap() {
-    setState(() {
-      _isValid = true;
-    });
     _selectDate(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    final controllerProvider =
+        Provider.of<TextFieldControllerProvider2>(context, listen: true);
+    final isValid = controllerProvider.isValid(_controller);
     return TextFieldContainer(
-      isValid: isValid,
+      isValid: () {
+        return isValid;
+      },
       child: CustomTextField(
         controller: _controller,
         keyboardType: TextInputType.datetime,
         labelText: widget.labelText,
-        onSaved: validate,
+        onSaved: () {},
         onTap: onTap,
         focusNode: _focusNode,
         hasFocus: _hasFocus,
