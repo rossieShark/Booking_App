@@ -1,6 +1,8 @@
 import 'package:booking/app_logic/booking_bloc/booking_bloc.dart';
-import 'package:booking/app_logic/hotel_page_bloc/hotel_page_bloc.dart';
+
+import 'package:booking/app_logic/index.dart';
 import 'package:booking/app_logic/rooms_bloc/rooms_bloc.dart';
+import 'package:booking/app_logic/test_controller.dart';
 import 'package:booking/services/repositories/booking_repo.dart';
 import 'package:booking/services/repositories/hotel_repo.dart';
 import 'package:booking/services/repositories/rooms_repo.dart';
@@ -32,5 +34,14 @@ class SetGetItDependencies {
 
   void setupServiceDependencies() {
     GetIt.instance.registerLazySingleton(() => HotelService.create());
+  }
+
+  void setupProviderDependencies() {
+    GetIt.instance.registerLazySingleton<TouristProvider>(
+      () => TouristProvider(),
+    );
+    GetIt.instance.registerLazySingleton<TextFieldControllerProvider2>(
+      () => TextFieldControllerProvider2(),
+    );
   }
 }

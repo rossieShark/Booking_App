@@ -7,6 +7,7 @@ import 'package:booking/screens/photo_carousel.dart';
 import 'package:booking/screens/rooms_info_page/rooms_information_screen.dart';
 import 'package:booking/services/ui_services/custom_text.dart';
 import 'package:booking/widgets/app_colors.dart';
+import 'package:booking/widgets/background_container.dart';
 import 'package:booking/widgets/custom_button.dart';
 import 'package:booking/widgets/peculiarities_list.dart';
 import 'package:booking/widgets/price_section.dart';
@@ -29,15 +30,10 @@ class RoomsCard extends StatelessWidget {
         .findAncestorStateOfType<RoomsInformationPageState>()
         ?.widget
         .hotelAddress;
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          height: 539,
-          color: AppColors.white,
-          width: MediaQuery.of(context).size.width,
-          child: Padding(
+    return BackgroundContainer(height: 539, padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+    child: 
+    
+    Padding(
             padding: const EdgeInsets.all(16.0),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -45,62 +41,100 @@ class RoomsCard extends StatelessWidget {
                   height: 257,
                   child:
                       CarouselWithIndicator(images: roomsList[index].images)),
-              Text(
-                roomsList[index].name,
-                style: TextStyleService.headline1(),
-              ),
+              _RoomsTitle(roomsList: roomsList, index: index),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                 child: CreatePeculiaritiesSection(
                     peculiarities: roomsList[index].peculiarities),
               ),
-              IntrinsicWidth(
-                child: Container(
-                  height: 29,
-                  color: AppColors.blue.withOpacity(0.1),
-                  child: Row(
-                    children: [
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text('Подробнее о номере',
-                          style: TextStyleService.headline2(
-                              color: AppColors.blue)),
-                      GestureDetector(
-                          onTap: () {},
-                          child: SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: Image.asset(AppImages.forward,
-                                  color: AppColors.blue))),
-                    ],
-                  ),
-                ),
-              ),
+              const _AdditionalInformationButton(),
               const SizedBox(
                 height: 16,
               ),
               CreatePriceSection(
                   price: roomsList[index].price,
                   priceFor: roomsList[index].pricePer),
-              CustomButton(
-                  buttonText: 'Выбрать номер',
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => BlocProvider<BookingBloc>(
-                            create: (_) => GetIt.I(),
-                            child: BookingPage(
-                              hotelAddress: address ?? "",
-                              hotelName: name ?? "",
-                            )),
-                      ),
-                    );
-                  })
+              _ChooseRoomButton(address: address, name: name)
             ]),
           ),
+
+    );
+  }
+}
+
+class _RoomsTitle extends StatelessWidget {
+  const _RoomsTitle({
+    required this.roomsList,
+    required this.index,
+  });
+
+  final List<Rooms> roomsList;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      roomsList[index].name,
+      style: TextStyleService.headline1(),
+    );
+  }
+}
+
+class _AdditionalInformationButton extends StatelessWidget {
+  const _AdditionalInformationButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return IntrinsicWidth(
+      child: Container(
+        height: 29,
+        color: AppColors.blue.withOpacity(0.1),
+        child: Row(
+          children: [
+            const SizedBox(
+              width: 10,
+            ),
+            Text('Подробнее о номере',
+                style: TextStyleService.headline2(
+                    color: AppColors.blue)),
+            GestureDetector(
+                onTap: () {},
+                child: SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: Image.asset(AppImages.forward,
+                        color: AppColors.blue))),
+          ],
         ),
       ),
     );
+  }
+}
+
+class _ChooseRoomButton extends StatelessWidget {
+  const _ChooseRoomButton({
+    required this.address,
+    required this.name,
+  });
+
+  final String? address;
+  final String? name;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomButton(
+        buttonText: 'Выбрать номер',
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => BlocProvider<BookingBloc>(
+                  create: (_) => GetIt.I(),
+                  child: BookingPage(
+                    hotelAddress: address ?? "",
+                    hotelName: name ?? "",
+                  )),
+            ),
+          );
+        });
   }
 }

@@ -1,10 +1,10 @@
-import 'package:booking/app_logic/controller_provider.dart';
+
 import 'package:booking/app_logic/test_controller.dart';
 import 'package:booking/screens/booking_page/text_fields/custom_text_field.dart';
 import 'package:booking/services/ui_services/custom_text.dart';
 import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:provider/provider.dart';
 

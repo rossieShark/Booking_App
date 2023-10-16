@@ -51,9 +51,6 @@ class _PassportNumberTextFieldState extends State<PassportNumberTextField> {
 
   @override
   Widget build(BuildContext context) {
-    final controllerProvider =
-        Provider.of<TextFieldControllerProvider2>(context, listen: true);
-    // final isValid = await controllerProvider.isValid(_controller);
 
     return TextFieldContainer(
       isValid: () {

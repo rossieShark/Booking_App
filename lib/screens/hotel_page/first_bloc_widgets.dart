@@ -18,7 +18,8 @@ class FirstBlocWidgets extends StatelessWidget {
         context.findAncestorStateOfType<HotelPageMainContentState>()?.hotelName;
     return ClipRRect(
       borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
+          bottomLeft: Radius.circular(12), 
+          bottomRight: Radius.circular(12)),
       child: Container(
         color: AppColors.white,
         height: 530 - 101,

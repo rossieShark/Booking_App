@@ -19,7 +19,7 @@ import 'package:booking/widgets/custom_button.dart';
 
 import 'package:booking/widgets/rating_section.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+
 import 'package:provider/provider.dart';
 
 class BookingPageContent extends StatelessWidget {

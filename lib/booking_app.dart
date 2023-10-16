@@ -10,26 +10,32 @@ class BookingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        appBarTheme: const AppBarTheme(
-            centerTitle: true,
-            surfaceTintColor: Colors.transparent,
-            elevation: 0.0,
-            backgroundColor: Colors.white,
-            titleTextStyle: TextStyle(
-                color: AppColors.black,
-                fontSize: 18,
-                fontFamily: 'SFPro',
-                fontWeight: FontWeight.w500,
-                height: 21.6 / 18)),
-        useMaterial3: true,
-      ),
-      home: BlocProvider<HotelBloc>(
-        create: (_) => GetIt.I(),
-        child: const HotelPage(),
+    return  MultiProvider(
+      providers: [
+        ChangeNotifierProvider<TouristProvider>(create: (_) => GetIt.I.get()),
+        ChangeNotifierProvider<TextFieldControllerProvider2>(create: (_)=> GetIt.I.get()),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          appBarTheme: const AppBarTheme(
+              centerTitle: true,
+              surfaceTintColor: Colors.transparent,
+              elevation: 0.0,
+              backgroundColor: Colors.white,
+              titleTextStyle: TextStyle(
+                  color: AppColors.black,
+                  fontSize: 18,
+                  fontFamily: 'SFPro',
+                  fontWeight: FontWeight.w500,
+                  height: 21.6 / 18)),
+          useMaterial3: true,
+        ),
+        home: BlocProvider<HotelBloc>(
+          create: (_) => GetIt.I(),
+          child: const HotelPage(),
+        ),
       ),
     );
   }

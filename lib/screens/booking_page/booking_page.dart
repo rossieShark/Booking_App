@@ -1,13 +1,13 @@
 import 'package:booking/app_logic/booking_bloc/booking_bloc.dart';
 import 'package:booking/app_logic/booking_bloc/booking_bloc_event.dart';
 import 'package:booking/app_logic/booking_bloc/booking_bloc_state.dart';
-import 'package:booking/app_logic/controller_provider.dart';
+
 import 'package:booking/screens/booking_page/booking_page_content.dart';
 import 'package:booking/widgets/app_colors.dart';
 
 import 'package:booking/widgets/fading_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class BookingPage extends StatefulWidget {
   final String hotelName;
