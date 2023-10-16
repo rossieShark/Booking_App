@@ -28,8 +28,6 @@ class _BookingPageState extends State<BookingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final controllerProvider =
-        Provider.of<TextFieldControllerProvider>(context, listen: false);
     return BlocBuilder<BookingBloc, BookingState>(builder: (context, state) {
       return Scaffold(
         backgroundColor: AppColors.background,
@@ -41,7 +39,6 @@ class _BookingPageState extends State<BookingPage> {
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pop(context);
-                controllerProvider.removeAllControllers();
               }),
         ),
         body: state.map(

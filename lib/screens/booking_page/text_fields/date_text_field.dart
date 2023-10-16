@@ -1,8 +1,7 @@
-import 'package:booking/app_logic/controller_provider.dart';
 import 'package:booking/app_logic/test_controller.dart';
 import 'package:booking/screens/booking_page/text_fields/custom_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +17,7 @@ class _DateTextFieldState extends State<DateTextField> {
   final _controller = TextEditingController();
   late FocusNode _focusNode;
   bool _hasFocus = false;
+  bool isValid = true;
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -61,10 +61,15 @@ class _DateTextFieldState extends State<DateTextField> {
   }
 
   @override
+  void didChangeDependencies() {
+    isValid =
+        context.watch<TextFieldControllerProvider2>().isValid(_controller);
+
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final controllerProvider =
-        Provider.of<TextFieldControllerProvider2>(context, listen: true);
-    final isValid = controllerProvider.isValid(_controller);
     return TextFieldContainer(
       isValid: () {
         return isValid;

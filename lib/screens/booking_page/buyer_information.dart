@@ -16,7 +16,7 @@ class CreateBuyerInformation extends StatelessWidget {
         height: 232,
         color: AppColors.white,
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -24,19 +24,19 @@ class CreateBuyerInformation extends StatelessWidget {
                 'Информация о покупателе',
                 style: TextStyleService.headline1(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              PhoneTextField(
+              const PhoneTextField(
                 labelText: 'Номер телефона',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
-              EmailTextField(
+              const EmailTextField(
                 labelText: 'Почта',
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 'Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту',
                 style: TextStyleService.headline3(

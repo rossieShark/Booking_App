@@ -8,7 +8,7 @@ class TextFieldContainer extends StatelessWidget {
   final Widget child;
 
   const TextFieldContainer({
-    Key? key,
+    super.key,
     required this.child,
     required this.isValid,
   });
@@ -40,7 +40,7 @@ class CustomTextField extends StatelessWidget {
   final FocusNode focusNode;
   final TextInputType? keyboardType;
   const CustomTextField(
-      {Key? key,
+      {super.key,
       required this.controller,
       required this.labelText,
       required this.hasFocus,

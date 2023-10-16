@@ -1,8 +1,7 @@
-import 'package:booking/app_logic/controller_provider.dart';
 import 'package:booking/app_logic/test_controller.dart';
 import 'package:booking/screens/booking_page/text_fields/custom_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+
 import 'package:provider/provider.dart';
 
 class PassportNumberTextField extends StatefulWidget {
@@ -20,6 +19,7 @@ class PassportNumberTextField extends StatefulWidget {
 class _PassportNumberTextFieldState extends State<PassportNumberTextField> {
   final _controller = TextEditingController();
   late FocusNode _focusNode;
+  bool isValid = false;
   bool _hasFocus = false;
 
   @override
@@ -42,10 +42,18 @@ class _PassportNumberTextFieldState extends State<PassportNumberTextField> {
   }
 
   @override
+  void didChangeDependencies() {
+    isValid =
+        context.watch<TextFieldControllerProvider2>().isValid(_controller);
+
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final controllerProvider =
         Provider.of<TextFieldControllerProvider2>(context, listen: true);
-    final isValid = controllerProvider.isValid(_controller);
+    // final isValid = await controllerProvider.isValid(_controller);
 
     return TextFieldContainer(
       isValid: () {

@@ -73,8 +73,8 @@ class _CreateConditionsSection extends StatelessWidget {
               );
             },
             separatorBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 24 + 12),
+              return const Padding(
+                padding: EdgeInsets.only(left: 24 + 12),
                 child: Divider(
                   thickness: 1,
                 ),

@@ -2,7 +2,7 @@ import 'package:booking/widgets/app_colors.dart';
 import 'package:flutter/widgets.dart';
 
 class TextStyleService {
-  static final fontFamily = 'SFPro';
+  static const fontFamily = 'SFPro';
 
   static TextStyle headline2(
       {Color? color, FontWeight? fontweight, double? height}) {
@@ -15,7 +15,6 @@ class TextStyleService {
     );
   }
 
-  // You can define other text styles here as needed
   static TextStyle headline1(
       {Color? color, FontWeight? fontweight, double? height}) {
     return TextStyle(

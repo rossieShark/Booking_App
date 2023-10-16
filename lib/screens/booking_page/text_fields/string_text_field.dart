@@ -18,7 +18,7 @@ class _NameTextFieldState extends State<NameTextField> {
   final _controller = TextEditingController();
   late FocusNode _focusNode;
   bool _hasFocus = false;
-  // bool _isValid = false;
+  bool isValid = true;
 
   @override
   void initState() {
@@ -35,17 +35,26 @@ class _NameTextFieldState extends State<NameTextField> {
   @override
   void dispose() {
     _controller.dispose();
-    _focusNode.dispose(); // Dispose of the FocusNode to prevent memory leaks
+    _focusNode.dispose(); 
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) {
-    
-    final controllerProvider =
-        Provider.of<TextFieldControllerProvider2>(context, listen: true);
-    final isValid = controllerProvider.isValid(_controller);
+  void didChangeDependencies() {
+    isValid =
+        context.watch<TextFieldControllerProvider2>().isValid(_controller);
 
+    super.didChangeDependencies();
+  }
+
+  void onTap() {
+    setState(() {
+      isValid = true;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return TextFieldContainer(
         isValid: () {
           return isValid;
@@ -57,7 +66,9 @@ class _NameTextFieldState extends State<NameTextField> {
             hasFocus: _hasFocus,
             regex: RegExp(r'[a-zA-Z]+'),
             onSaved: () {},
-            onTap: () {},
+            onTap: () {
+              onTap();
+            },
             focusNode: _focusNode));
   }
 }

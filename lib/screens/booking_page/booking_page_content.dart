@@ -1,4 +1,3 @@
-import 'package:booking/app_logic/controller_provider.dart';
 import 'package:booking/app_logic/test_controller.dart';
 import 'package:booking/app_logic/tourist_provider/tourist_provider.dart';
 import 'package:booking/models/booking_info_table_model.dart';
@@ -20,6 +19,7 @@ import 'package:booking/widgets/custom_button.dart';
 
 import 'package:booking/widgets/rating_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
 class BookingPageContent extends StatelessWidget {
@@ -43,11 +43,9 @@ class BookingPageContent extends StatelessWidget {
     final String? name =
         context.findAncestorStateOfType<HotelPageMainContentState>()?.hotelName;
     print(name);
-    final controllerProvider =
-        Provider.of<TextFieldControllerProvider>(context, listen: false);
+
     final price = formatNumberWithSpace(_calculateTotalPrice());
-    final controllerProvider2 =
-        Provider.of<TextFieldControllerProvider2>(context, listen: false);
+
     final touristProvider = Provider.of<TouristProvider>(context);
     final List<BookingIngoTable> tableContent = [
       BookingIngoTable(name: 'Вылет из', description: bookingInfo.departure),
@@ -113,29 +111,46 @@ class BookingPageContent extends StatelessWidget {
       const SizedBox(
         height: 8,
       ),
-      Container(
-          height: 88,
-          width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-              color: AppColors.white,
-              border: Border(
-                  top: BorderSide(width: 1, color: AppColors.lightBlue))),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
-            child: CustomButton(
-                buttonText: 'Oплатить $price ₽',
-                onPressed: () {
-                  controllerProvider2.setButtonTapped(true);
-
-                  if (controllerProvider2.isAllControllersValid()) {
-                    // All fields are filled, perform the action
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const PaidPage()),
-                    );
-                  } else {}
-                }),
-          ))
+      PayButtonWidget(price: price)
     ]);
+  }
+}
+
+class PayButtonWidget extends StatelessWidget {
+  const PayButtonWidget({
+    super.key,
+    required this.price,
+  });
+
+  final String price;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 88,
+        width: MediaQuery.of(context).size.width,
+        decoration: const BoxDecoration(
+            color: AppColors.white,
+            border:
+                Border(top: BorderSide(width: 1, color: AppColors.lightBlue))),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
+          child: CustomButton(
+              buttonText: 'Oплатить $price ₽',
+              onPressed: () {
+                final controllerProvider2 =
+                    Provider.of<TextFieldControllerProvider2>(context,
+                        listen: false);
+                controllerProvider2.setButtonTapped(true);
+
+                if (controllerProvider2.isAllControllersValid()) {
+                  // All fields are filled, perform the action
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const PaidPage()),
+                  );
+                } else {}
+              }),
+        ));
   }
 }
 
