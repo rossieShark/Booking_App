@@ -1,8 +1,5 @@
 import 'dart:async';
-
-import 'package:booking/models/booking_model.dart/booking_model.dart';
-import 'package:booking/models/hotel_model/hotel_model.dart';
-import 'package:booking/models/rooms_model/room_model.dart';
+import 'package:booking/models/models_index.dart';
 import 'package:chopper/chopper.dart';
 
 final Map<Type, Object Function(Map<String, dynamic>)> generatedMapping = {

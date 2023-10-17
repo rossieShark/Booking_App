@@ -1,5 +1,6 @@
-import 'package:booking/models/rooms_model/room_model.dart';
-import 'package:booking/screens/rooms_info_page/rooms_card.dart';
+import 'package:booking/models/models_index.dart';
+import 'package:booking/screens/rooms_info_page/rooms_info_page_index.dart';
+
 import 'package:flutter/widgets.dart';
 
 class RoomsListView extends StatelessWidget {

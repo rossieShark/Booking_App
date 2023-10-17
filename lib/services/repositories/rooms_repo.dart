@@ -1,6 +1,5 @@
-import 'package:booking/models/rooms_model/room_model.dart';
-
-import 'package:booking/services/services/service.dart';
+import 'package:booking/models/models_index.dart';
+import 'package:booking/services/services_index.dart';
 
 class RoomsRepository {
   final HotelService _hotelService;

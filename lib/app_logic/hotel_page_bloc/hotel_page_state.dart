@@ -1,4 +1,4 @@
-import 'package:booking/models/hotel_model/hotel_model.dart';
+import 'package:booking/models/models_index.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'hotel_page_state.freezed.dart';
 part 'hotel_page_state.g.dart';

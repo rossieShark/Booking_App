@@ -1,10 +1,7 @@
-import 'package:booking/models/hotel_model/hotel_model.dart';
-import 'package:booking/screens/hotel_page_main_content.dart';
-import 'package:booking/screens/photo_carousel.dart';
-import 'package:booking/widgets/address_section.dart';
-import 'package:booking/widgets/app_colors.dart';
-import 'package:booking/widgets/price_section.dart';
-import 'package:booking/widgets/rating_section.dart';
+import 'package:booking/models/models_index.dart';
+import 'package:booking/screens/hotel_page/hotel_page_index.dart';
+import 'package:booking/services/services_index.dart';
+import 'package:booking/widgets/widgets_index.dart';
 import 'package:flutter/material.dart';
 
 class FirstBlocWidgets extends StatelessWidget {
@@ -18,8 +15,7 @@ class FirstBlocWidgets extends StatelessWidget {
         context.findAncestorStateOfType<HotelPageMainContentState>()?.hotelName;
     return ClipRRect(
       borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(12), 
-          bottomRight: Radius.circular(12)),
+          bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
       child: Container(
         color: AppColors.white,
         height: 530 - 101,

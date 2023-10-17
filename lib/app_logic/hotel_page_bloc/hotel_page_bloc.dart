@@ -1,8 +1,6 @@
 export 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:booking/app_logic/hotel_page_bloc/hotel_page_bloc.dart';
-import 'package:booking/app_logic/hotel_page_bloc/hotel_page_event.dart';
-import 'package:booking/app_logic/hotel_page_bloc/hotel_page_state.dart';
-import 'package:booking/services/repositories/hotel_repo.dart';
+import 'package:booking/app_logic/index.dart';
+import 'package:booking/services/services_index.dart';
 
 class HotelBloc extends Bloc<HotelEvent, HotelState> {
   final HotelRepository repository;

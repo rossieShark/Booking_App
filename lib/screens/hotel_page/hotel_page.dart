@@ -1,10 +1,8 @@
-import 'package:booking/app_logic/hotel_page_bloc/hotel_page_bloc.dart';
-import 'package:booking/app_logic/hotel_page_bloc/hotel_page_event.dart';
-import 'package:booking/app_logic/hotel_page_bloc/hotel_page_state.dart';
+import 'package:booking/app_logic/index.dart';
+import 'package:booking/screens/hotel_page/hotel_page_index.dart';
 
-import 'package:booking/screens/hotel_page_main_content.dart';
-import 'package:booking/widgets/app_colors.dart';
-import 'package:booking/widgets/fading_indicator.dart';
+import 'package:booking/services/services_index.dart';
+import 'package:booking/widgets/widgets_index.dart';
 import 'package:flutter/material.dart';
 
 class HotelPage extends StatefulWidget {

@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:booking/booking_app.dart';
 import 'package:booking/resources/resources.dart';
-import 'package:booking/services/ui_services/custom_text.dart';
-import 'package:booking/widgets/app_colors.dart';
+import 'package:booking/services/services_index.dart';
 
-import 'package:booking/widgets/custom_button.dart';
+import 'package:booking/widgets/widgets_index.dart';
+
 import 'package:flutter/material.dart';
 
 class PaidPage extends StatelessWidget {

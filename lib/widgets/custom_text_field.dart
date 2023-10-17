@@ -1,5 +1,4 @@
-import 'package:booking/services/ui_services/custom_text.dart';
-import 'package:booking/widgets/app_colors.dart';
+import 'package:booking/services/services_index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,10 +19,7 @@ class TextFieldContainer extends StatelessWidget {
       child: Container(
         height: 52,
         width: MediaQuery.of(context).size.width, // Adjust the width as needed
-
         color: !isValid() ? AppColors.red.withOpacity(0.15) : AppColors.white,
-        // Set background color based on errorText
-
         child: child,
       ),
     );
@@ -35,7 +31,7 @@ class CustomTextField extends StatelessWidget {
   final String labelText;
   final bool hasFocus;
   final RegExp? regex;
-  final VoidCallback onSaved;
+  final VoidCallback? onSaved;
   final VoidCallback onTap;
   final FocusNode focusNode;
   final TextInputType? keyboardType;
@@ -45,9 +41,9 @@ class CustomTextField extends StatelessWidget {
       required this.labelText,
       required this.hasFocus,
       this.regex,
-      required this.onSaved,
       required this.onTap,
       required this.focusNode,
+      this.onSaved,
       this.keyboardType});
 
   @override
@@ -75,17 +71,14 @@ class CustomTextField extends StatelessWidget {
         fontweight: FontWeight.w400,
         height: 17.6 / 16,
       ),
-
       onSaved: (value) {
-        onSaved();
+        onSaved;
       },
       onTap: () {
-        // Reset validation when user taps into the field
         onTap();
       },
-      focusNode: focusNode, // Assign the FocusNode to the field
+      focusNode: focusNode,
       onFieldSubmitted: (_) {
-        // Set focus to another field when submitted
         FocusScope.of(context).nextFocus();
       },
     );

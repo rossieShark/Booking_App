@@ -1,9 +1,9 @@
-import 'package:booking/models/hotel_model/hotel_model.dart';
-import 'package:booking/screens/hotel_page_main_content.dart';
-import 'package:booking/services/ui_services/custom_text.dart';
-import 'package:booking/widgets/app_colors.dart';
-import 'package:booking/widgets/background_container.dart';
-import 'package:booking/widgets/peculiarities_list.dart';
+import 'package:booking/models/models_index.dart';
+import 'package:booking/screens/hotel_page/widgets/hotel_page_main_content.dart';
+import 'package:booking/services/services_index.dart';
+
+import 'package:booking/widgets/widgets_index.dart';
+
 import 'package:flutter/material.dart';
 
 class SecondBlocWidgets extends StatelessWidget {
@@ -53,6 +53,7 @@ class _CreateConditionsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackgroundContainer(
       height: 184,
+      color: AppColors.background,
       width: MediaQuery.of(context).size.width - 32,
       borderRadius: BorderRadius.circular(15),
       child: const _CreateConditionsListView(),
@@ -86,11 +87,11 @@ class _CreateConditionsListView extends StatelessWidget {
 
 class _Divider extends StatelessWidget {
   const _Divider();
-final double imageHeight = 24;
-  final  double padding = 12;
+  final double imageHeight = 24;
+  final double padding = 12;
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: EdgeInsets.only(left: imageHeight + padding),
       child: const Divider(
         thickness: 1,
@@ -109,7 +110,10 @@ class _ConditionsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisSize: MainAxisSize.max, children: [
-      _ConditionsIcon(index: index, size: imageHeight,),
+      _ConditionsIcon(
+        index: index,
+        size: imageHeight,
+      ),
       const SizedBox(
         width: padding,
       ),
@@ -120,7 +124,8 @@ class _ConditionsCard extends StatelessWidget {
 
 class _ConditionsIcon extends StatelessWidget {
   const _ConditionsIcon({
-    required this.index, required this.size,
+    required this.index,
+    required this.size,
   });
 
   final int index;

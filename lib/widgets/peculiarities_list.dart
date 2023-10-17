@@ -1,7 +1,6 @@
 import 'dart:math';
 
-import 'package:booking/services/ui_services/custom_text.dart';
-import 'package:booking/widgets/app_colors.dart';
+import 'package:booking/services/services_index.dart';
 import 'package:flutter/material.dart';
 
 class CreatePeculiaritiesSection extends StatelessWidget {
@@ -32,9 +31,7 @@ class CreatePeculiaritiesSection extends StatelessWidget {
                   child: Text(peculiarity,
                       style: TextStyleService.headline2(
                         color: AppColors.grey,
-                      ) // You can use 1.2 for a line height of 19.2px
-
-                      ),
+                      )),
                 ),
               );
             }).toList(),

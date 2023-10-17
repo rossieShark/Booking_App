@@ -1,8 +1,8 @@
-import 'package:booking/app_logic/rooms_bloc/rooms_bloc.dart';
-import 'package:booking/screens/hotel_page_main_content.dart';
+import 'package:booking/app_logic/index.dart';
+import 'package:booking/screens/hotel_page/widgets/hotel_page_main_content.dart';
 import 'package:booking/screens/rooms_info_page/rooms_information_screen.dart';
-import 'package:booking/widgets/app_colors.dart';
-import 'package:booking/widgets/custom_button.dart';
+import 'package:booking/services/services_index.dart';
+import 'package:booking/widgets/widgets_index.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 

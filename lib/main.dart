@@ -1,6 +1,5 @@
-
 import 'package:booking/booking_app.dart';
-import 'package:booking/widgets/get_it.dart';
+import 'package:booking/services/services_index.dart';
 import 'package:flutter/material.dart';
 
 void main() {

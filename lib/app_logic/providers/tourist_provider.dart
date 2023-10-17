@@ -1,5 +1,4 @@
-import 'package:booking/models/tourist_model.dart';
-
+import 'package:booking/models/models_index.dart';
 import 'package:flutter/material.dart';
 
 class TouristProvider extends ChangeNotifier {

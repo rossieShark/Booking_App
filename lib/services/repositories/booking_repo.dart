@@ -1,6 +1,5 @@
-import 'package:booking/models/booking_model.dart/booking_model.dart';
-
-import 'package:booking/services/services/service.dart';
+import 'package:booking/models/models_index.dart';
+import 'package:booking/services/services_index.dart';
 
 class BookingRepository {
   final HotelService _hotelService;

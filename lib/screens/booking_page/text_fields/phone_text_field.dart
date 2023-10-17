@@ -1,12 +1,10 @@
+import 'package:booking/services/services_index.dart';
+import 'package:booking/app_logic/index.dart';
 
-import 'package:booking/app_logic/test_controller.dart';
-import 'package:booking/screens/booking_page/text_fields/custom_text_field.dart';
-import 'package:booking/services/ui_services/custom_text.dart';
-import 'package:booking/widgets/app_colors.dart';
+import 'package:booking/widgets/widgets_index.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
-import 'package:provider/provider.dart';
 
 class PhoneTextField extends StatefulWidget {
   const PhoneTextField({Key? key, required this.labelText}) : super(key: key);
@@ -25,11 +23,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
     super.initState();
     _focusNode = FocusNode();
 
-    _focusNode.addListener(() {
-      // if (!_focusNode.hasFocus) {
-      //   validateMobile(phoneNumberController.text);
-      // }
-    });
+    _focusNode.addListener(() {});
     phoneNumberController.addListener(() {
       final text = phoneNumberController.text;
       if (text.startsWith('9')) {
@@ -41,35 +35,14 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
       }
       print(phoneNumberController.text.length);
     });
-    // SchedulerBinding.instance.addPostFrameCallback((_) {
-    //   final controllerProvider =
-    //       Provider.of<TextFieldControllerProvider>(context, listen: false);
-    //   controllerProvider.addController(phoneNumberController);
-    // });
   }
 
-  // void validateMobile(String? value) {
-  //   if (value == null || value.isEmpty) {
-  //     setState(() {
-  //       _isValid = false;
-  //     });
-  //     return; // Empty input is invalid
-  //   }
+  // void onTap() {
+  //   isValid = true;
+  //   setState(() {
 
-  //   String pattern = r'^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$';
-  //   RegExp regExp = RegExp(pattern);
-
-  //   if (!regExp.hasMatch(value)) {
-  //     setState(() {
-  //       _isValid = false;
-  //     });
-  //   } else {
-  //     setState(() {
-  //       _isValid = true;
-  //     });
-  //   }
+  //   });
   // }
-
   @override
   void dispose() {
     _focusNode.dispose();
@@ -80,7 +53,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   @override
   Widget build(BuildContext context) {
     final controllerProvider =
-        Provider.of<TextFieldControllerProvider2>(context, listen: true);
+        Provider.of<TextFieldsProvider>(context, listen: true);
     final isValid = controllerProvider.isValidMobile(phoneNumberController);
     return TextFieldContainer(
         isValid: () {
@@ -114,19 +87,9 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
                     height: 17.6 / 16),
                 focusNode: _focusNode,
                 onFieldSubmitted: (_) {
-                  // Set focus to another field when submitted
                   FocusScope.of(context).nextFocus();
                 },
-                onSaved: (value) {
-                  // validateMobile(value);
-                },
-                onTap: () {
-                  // Reset validation when user taps into the field
-                  // setState(() {
-                  //   _isValid = true;
-                  // });
-                },
-                // validator: validateMobile, // Assign the validation function
+                onTap: () {},
               ))
         ]));
   }

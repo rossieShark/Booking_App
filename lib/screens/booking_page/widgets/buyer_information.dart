@@ -1,7 +1,5 @@
-import 'package:booking/screens/booking_page/text_fields/email_text_field.dart';
-import 'package:booking/screens/booking_page/text_fields/phone_text_field.dart';
-import 'package:booking/services/ui_services/custom_text.dart';
-import 'package:booking/widgets/app_colors.dart';
+import 'package:booking/screens/booking_page/booking_page_index.dart';
+import 'package:booking/services/services_index.dart';
 
 import 'package:flutter/material.dart';
 

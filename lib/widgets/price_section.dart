@@ -1,6 +1,6 @@
-import 'package:booking/screens/hotel_page_main_content.dart';
-import 'package:booking/services/ui_services/custom_text.dart';
-import 'package:booking/widgets/app_colors.dart';
+import 'package:booking/screens/hotel_page/widgets/hotel_page_main_content.dart';
+import 'package:booking/services/services_index.dart';
+
 import 'package:flutter/material.dart';
 
 class CreatePriceSection extends StatelessWidget {

@@ -1,7 +1,8 @@
 import 'package:booking/app_logic/index.dart';
-import 'package:booking/app_logic/test_controller.dart';
-import 'package:booking/screens/hotel_page.dart';
-import 'package:booking/widgets/app_colors.dart';
+import 'package:booking/screens/hotel_page/hotel_page_index.dart';
+
+import 'package:booking/services/services_index.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -10,10 +11,11 @@ class BookingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MultiProvider(
+    return MultiProvider(
       providers: [
         ChangeNotifierProvider<TouristProvider>(create: (_) => GetIt.I.get()),
-        ChangeNotifierProvider<TextFieldControllerProvider2>(create: (_)=> GetIt.I.get()),
+        ChangeNotifierProvider<TextFieldsProvider>(
+            create: (_) => GetIt.I.get()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

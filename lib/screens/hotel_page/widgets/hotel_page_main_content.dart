@@ -1,9 +1,6 @@
-import 'package:booking/models/hotel_conditions_model.dart';
-import 'package:booking/models/hotel_model/hotel_model.dart';
+import 'package:booking/models/models_index.dart';
 import 'package:booking/resources/resources.dart';
-import 'package:booking/screens/hotel_page/first_bloc_widgets.dart';
-import 'package:booking/screens/hotel_page/second_bloc_widgets.dart';
-import 'package:booking/screens/hotel_page/third_bloc_widgets.dart';
+import 'package:booking/screens/hotel_page/hotel_page_index.dart';
 import 'package:flutter/material.dart';
 
 class HotelPageMainContent extends StatefulWidget {

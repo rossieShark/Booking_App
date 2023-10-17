@@ -1,26 +1,11 @@
-import 'package:booking/app_logic/test_controller.dart';
-import 'package:booking/app_logic/tourist_provider/tourist_provider.dart';
-import 'package:booking/models/booking_info_table_model.dart';
-import 'package:booking/models/booking_model.dart/booking_model.dart';
-
-import 'package:booking/screens/booking_page/buyer_information.dart';
-
-import 'package:booking/screens/booking_page/information_table.dart';
-import 'package:booking/screens/booking_page/price_section.dart';
-
-import 'package:booking/screens/booking_page/tourist_list.dart';
-import 'package:booking/screens/hotel_page_main_content.dart';
+import 'package:booking/app_logic/index.dart';
+import 'package:booking/models/models_index.dart';
+import 'package:booking/screens/booking_page/booking_page_index.dart';
+import 'package:booking/screens/hotel_page/widgets/hotel_page_main_content.dart';
 import 'package:booking/screens/paid_page/paid_page.dart';
-import 'package:booking/services/ui_services/custom_text.dart';
-
-import 'package:booking/widgets/address_section.dart';
-import 'package:booking/widgets/app_colors.dart';
-import 'package:booking/widgets/custom_button.dart';
-
-import 'package:booking/widgets/rating_section.dart';
+import 'package:booking/services/services_index.dart';
+import 'package:booking/widgets/widgets_index.dart';
 import 'package:flutter/material.dart';
-
-import 'package:provider/provider.dart';
 
 class BookingPageContent extends StatelessWidget {
   final BookingResponse bookingInfo;
@@ -64,27 +49,24 @@ class BookingPageContent extends StatelessWidget {
     ];
     return ListView(padding: EdgeInsets.zero, children: [
       const SizedBox(height: 8),
-      ClipRRect(
+      BackgroundContainer(
+        height: 120,
         borderRadius: BorderRadius.circular(15),
-        child: Container(
-          color: AppColors.white,
-          height: 120,
-          width: MediaQuery.of(context).size.width,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CreateRatingSection(
-                  rating: bookingInfo.horating,
-                  ratingName: bookingInfo.ratingName,
-                ),
-                CreateAddressSection(
-                  hotelName: hotelName,
-                  hotelAddress: hotelAddress,
-                ),
-              ],
-            ),
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CreateRatingSection(
+                rating: bookingInfo.horating,
+                ratingName: bookingInfo.ratingName,
+              ),
+              CreateAddressSection(
+                hotelName: hotelName,
+                hotelAddress: hotelAddress,
+              ),
+            ],
           ),
         ),
       ),
@@ -100,6 +82,9 @@ class BookingPageContent extends StatelessWidget {
         height: 8,
       ),
       const TouristListScreen(),
+      const SizedBox(
+        height: 8,
+      ),
       AddTouristWidget(touristProvider: touristProvider),
       const SizedBox(
         height: 8,
@@ -124,33 +109,36 @@ class PayButtonWidget extends StatelessWidget {
 
   final String price;
 
+  void onPressed(BuildContext context) {
+    final provider = context.read<TextFieldsProvider>();
+    provider.setButtonTapped(true);
+
+    if (provider.isAllControllersValid()) {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const PaidPage()),
+      );
+    } else {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 88,
-        width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-            color: AppColors.white,
-            border:
-                Border(top: BorderSide(width: 1, color: AppColors.lightBlue))),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
-          child: CustomButton(
-              buttonText: 'Oплатить $price ₽',
-              onPressed: () {
-                final controllerProvider2 =
-                    Provider.of<TextFieldControllerProvider2>(context,
-                        listen: false);
-                controllerProvider2.setButtonTapped(true);
-
-                if (controllerProvider2.isAllControllersValid()) {
-                  // All fields are filled, perform the action
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const PaidPage()),
-                  );
-                } else {}
-              }),
-        ));
+      height: 88,
+      width: MediaQuery.of(context).size.width,
+      decoration: const BoxDecoration(
+          color: AppColors.white,
+          border:
+              Border(top: BorderSide(width: 1, color: AppColors.lightBlue))),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
+        child: CustomButton(
+          buttonText: 'Oплатить $price ₽',
+          onPressed: () {
+            onPressed(context);
+          },
+        ),
+      ),
+    );
   }
 }
 
@@ -164,32 +152,28 @@ class AddTouristWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        height: 58,
-        width: MediaQuery.of(context).size.width,
-        color: AppColors.white,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Добавить туриста',
-                style: TextStyleService.headline1(),
-              ),
-              ExpandButton(
-                icon: Icons.add,
-                iconColor: AppColors.white,
-                containerColor: AppColors.blue,
-                onTap: () {
-                  touristProvider
-                      .addToTourists(touristProvider.tourists.length + 1);
-                },
-              ),
-            ],
-          ),
+    return BackgroundContainer(
+      height: 58,
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Добавить туриста',
+              style: TextStyleService.headline1(),
+            ),
+            ExpandButton(
+              icon: Icons.add,
+              iconColor: AppColors.white,
+              containerColor: AppColors.blue,
+              onTap: () {
+                touristProvider
+                    .addToTourists(touristProvider.tourists.length + 1);
+              },
+            ),
+          ],
         ),
       ),
     );

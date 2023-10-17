@@ -1,9 +1,8 @@
-import 'package:booking/app_logic/test_controller.dart';
-import 'package:booking/screens/booking_page/text_fields/custom_text_field.dart';
+import 'package:booking/widgets/widgets_index.dart';
+import 'package:booking/app_logic/index.dart';
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class DateTextField extends StatefulWidget {
   const DateTextField({Key? key, required this.labelText}) : super(key: key);
@@ -62,8 +61,7 @@ class _DateTextFieldState extends State<DateTextField> {
 
   @override
   void didChangeDependencies() {
-    isValid =
-        context.watch<TextFieldControllerProvider2>().isValid(_controller);
+    isValid = context.watch<TextFieldsProvider>().isValid(_controller);
 
     super.didChangeDependencies();
   }
@@ -78,7 +76,6 @@ class _DateTextFieldState extends State<DateTextField> {
         controller: _controller,
         keyboardType: TextInputType.datetime,
         labelText: widget.labelText,
-        onSaved: () {},
         onTap: onTap,
         focusNode: _focusNode,
         hasFocus: _hasFocus,

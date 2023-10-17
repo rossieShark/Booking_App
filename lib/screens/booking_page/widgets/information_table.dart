@@ -1,6 +1,5 @@
-import 'package:booking/models/booking_info_table_model.dart';
-import 'package:booking/services/ui_services/custom_text.dart';
-import 'package:booking/widgets/app_colors.dart';
+import 'package:booking/models/models_index.dart';
+import 'package:booking/services/services_index.dart';
 import 'package:flutter/material.dart';
 
 class CreateInformationTable extends StatelessWidget {

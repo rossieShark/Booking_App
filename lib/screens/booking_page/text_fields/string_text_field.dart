@@ -1,7 +1,7 @@
-import 'package:booking/app_logic/test_controller.dart';
-import 'package:booking/screens/booking_page/text_fields/custom_text_field.dart';
+import 'package:booking/app_logic/index.dart';
+import 'package:booking/widgets/widgets_index.dart';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class NameTextField extends StatefulWidget {
   const NameTextField({
@@ -35,22 +35,20 @@ class _NameTextFieldState extends State<NameTextField> {
   @override
   void dispose() {
     _controller.dispose();
-    _focusNode.dispose(); 
+    _focusNode.dispose();
     super.dispose();
   }
 
   @override
   void didChangeDependencies() {
-    isValid =
-        context.watch<TextFieldControllerProvider2>().isValid(_controller);
+    isValid = context.watch<TextFieldsProvider>().isValid(_controller);
 
     super.didChangeDependencies();
   }
 
   void onTap() {
-    setState(() {
-      isValid = true;
-    });
+    isValid = true;
+    setState(() {});
   }
 
   @override
@@ -65,10 +63,7 @@ class _NameTextFieldState extends State<NameTextField> {
             labelText: widget.labelText,
             hasFocus: _hasFocus,
             regex: RegExp(r'[a-zA-Z]+'),
-            onSaved: () {},
-            onTap: () {
-              onTap();
-            },
+            onTap: onTap,
             focusNode: _focusNode));
   }
 }

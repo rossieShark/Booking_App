@@ -1,4 +1,4 @@
-import 'package:booking/widgets/app_colors.dart';
+import 'package:booking/services/services_index.dart';
 import 'package:flutter/widgets.dart';
 
 class TextStyleService {

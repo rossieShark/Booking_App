@@ -1,8 +1,6 @@
-import 'package:booking/app_logic/test_controller.dart';
-import 'package:booking/screens/booking_page/text_fields/custom_text_field.dart';
+import 'package:booking/widgets/widgets_index.dart';
+import 'package:booking/app_logic/index.dart';
 import 'package:flutter/material.dart';
-
-import 'package:provider/provider.dart';
 
 class PassportNumberTextField extends StatefulWidget {
   const PassportNumberTextField({
@@ -43,15 +41,18 @@ class _PassportNumberTextFieldState extends State<PassportNumberTextField> {
 
   @override
   void didChangeDependencies() {
-    isValid =
-        context.watch<TextFieldControllerProvider2>().isValid(_controller);
+    isValid = context.watch<TextFieldsProvider>().isValid(_controller);
 
     super.didChangeDependencies();
   }
 
+  void onTap() {
+    isValid = true;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return TextFieldContainer(
       isValid: () {
         return isValid;
@@ -59,13 +60,11 @@ class _PassportNumberTextFieldState extends State<PassportNumberTextField> {
       child: CustomTextField(
         controller: _controller,
         keyboardType: TextInputType.number,
-
         labelText: widget.labelText,
         regex: RegExp(r'[\d]+'),
-        onSaved: () {},
-        onTap: () {},
+        onTap: onTap,
         focusNode: _focusNode,
-        hasFocus: _hasFocus, // Assign the FocusNode to the field
+        hasFocus: _hasFocus,
       ),
     );
   }
