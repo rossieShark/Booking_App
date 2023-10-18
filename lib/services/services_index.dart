@@ -4,5 +4,7 @@ export 'package:booking/services/helper/get_it.dart';
 export 'package:booking/services/repositories/booking_repo.dart';
 export 'package:booking/services/repositories/hotel_repo.dart';
 export 'package:booking/services/helper/json_serializable.dart';
-export 'package:booking/services/services/service.dart';
+export 'package:booking/services/api_services/service.dart';
 export 'package:booking/services/repositories/rooms_repo.dart';
+export 'package:booking/services/service/text_fields_management_service.dart';
+export 'package:booking/services/service/text_fields_validation_service.dart';

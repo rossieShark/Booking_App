@@ -31,7 +31,7 @@ class _HotelPageState extends State<HotelPage> {
         ),
         body: state.map(
           loading: (_) => const Center(child: CustomFadingCircleIndicator()),
-          noResults: (_) => const Text('No Results'),
+          noResults: (_) => const NoResultWidget(),
           loaded: (loadEvent) =>
               HotelPageMainContent(hotelInfo: loadEvent.data),
         ),

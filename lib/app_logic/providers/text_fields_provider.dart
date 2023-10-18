@@ -1,51 +1,67 @@
-import 'package:email_validator/email_validator.dart';
+
+import 'package:booking/services/services_index.dart';
 import 'package:flutter/material.dart';
 
-class TextFieldsProvider with ChangeNotifier {
-  final Map<TextEditingController, bool> _controllers = {};
-  bool _isButtonTapped = false;
+class _ViewModelState {
+  Map<TextEditingController, bool> controllers = {};
+  bool isButtonTapped = false;
+}
 
-  TextEditingController addController(TextEditingController controller) {
-    _controllers[controller] = false;
-    return controller;
+class TextFieldsProvider with ChangeNotifier {
+  // ignore: prefer_final_fields
+  var _state = _ViewModelState();
+  final _textFieldsManagementService = TextFieldsManagementService();
+  final _textFieldsValidationService = TextFieldValidationService();
+
+  void addController(TextEditingController controller) {
+    _textFieldsManagementService.addController(_state.controllers, controller);
   }
 
   bool isValid(TextEditingController controller) {
-    if (_isButtonTapped) {
-      setValid(controller, controller.text.isNotEmpty);
+    if (_state.isButtonTapped) {
+      _setValid(controller, controller.text.isNotEmpty);
       return controller.text.isNotEmpty;
     }
     return true;
   }
 
   Future<void> setButtonTapped(bool value) async {
-    _isButtonTapped = value;
+    _state.isButtonTapped = value;
     await Future.delayed(Duration.zero);
     notifyListeners();
   }
 
-  Future<void> setValid(TextEditingController controller, bool valid) async {
-    _controllers[controller] = valid;
+  Future<void> _setValid(TextEditingController controller, bool valid) async {
+    _textFieldsManagementService.setValid(
+        _state.controllers, controller, valid);
+    // _state.controllers[controller] = valid;
+
     await Future.delayed(Duration.zero);
     notifyListeners();
   }
 
   bool isAllControllersValid() {
-    if (_controllers.isEmpty) {
-      return false;
-    }
-    return _controllers.values.every((valid) => valid);
+    return _state.controllers.isEmpty
+        ? false
+        : _textFieldsManagementService
+            .isAllControllersValid(_state.controllers);
   }
 
   bool isValidEmail(TextEditingController controller) {
     final text = controller.text;
-    return _isButtonTapped ? EmailValidator.validate(text) : true;
+    return _state.isButtonTapped
+        ? _textFieldsValidationService.isValidEmail(text)
+        : true;
   }
 
   bool isValidMobile(TextEditingController controller) {
     final text = controller.text;
-    const pattern = r'^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$';
-    final regExp = RegExp(pattern);
-    return _isButtonTapped ? regExp.hasMatch(text) : true;
+    return _state.isButtonTapped
+        ? _textFieldsValidationService.isValidEmail(text)
+        : true;
   }
 }
+
+
+
+

@@ -112,6 +112,7 @@ class PayButtonWidget extends StatelessWidget {
   void onPressed(BuildContext context) {
     final provider = context.read<TextFieldsProvider>();
     provider.setButtonTapped(true);
+    provider.isAllControllersValid();
 
     if (provider.isAllControllersValid()) {
       Navigator.of(context).push(

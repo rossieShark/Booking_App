@@ -16,7 +16,7 @@ class _DateTextFieldState extends State<DateTextField> {
   final _controller = TextEditingController();
   late FocusNode _focusNode;
   bool _hasFocus = false;
-  bool isValid = true;
+  bool _isValid = true;
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -55,13 +55,13 @@ class _DateTextFieldState extends State<DateTextField> {
     super.dispose();
   }
 
-  void onTap() {
+  void _onTap() {
     _selectDate(context);
   }
 
   @override
   void didChangeDependencies() {
-    isValid = context.watch<TextFieldsProvider>().isValid(_controller);
+    _isValid = context.watch<TextFieldsProvider>().isValid(_controller);
 
     super.didChangeDependencies();
   }
@@ -70,13 +70,13 @@ class _DateTextFieldState extends State<DateTextField> {
   Widget build(BuildContext context) {
     return TextFieldContainer(
       isValid: () {
-        return isValid;
+        return _isValid;
       },
       child: CustomTextField(
         controller: _controller,
         keyboardType: TextInputType.datetime,
         labelText: widget.labelText,
-        onTap: onTap,
+        onTap: _onTap,
         focusNode: _focusNode,
         hasFocus: _hasFocus,
         regex: null,

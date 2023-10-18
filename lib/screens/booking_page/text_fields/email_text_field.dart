@@ -37,19 +37,28 @@ class _EmailTextFieldState extends State<EmailTextField> {
   }
 
   @override
+  void didChangeDependencies() {
+    _isValid =
+        context.watch<TextFieldsProvider>().isValidEmail(_emailController);
+    super.didChangeDependencies();
+  }
+
+  void onTap() {
+    _isValid = true;
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final controllerProvider =
-        Provider.of<TextFieldsProvider>(context, listen: true);
-    final isValid = controllerProvider.isValidEmail(_emailController);
     return TextFieldContainer(
       isValid: () {
-        return isValid;
+        return _isValid;
       },
       child: CustomTextField(
         controller: _emailController,
         keyboardType: TextInputType.emailAddress,
         labelText: widget.labelText,
-        onTap: () {},
+        onTap: onTap,
         focusNode: _emailFocusNode,
         hasFocus: _hasFocus,
       ),

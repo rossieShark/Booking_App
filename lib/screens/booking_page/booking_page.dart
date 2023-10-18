@@ -1,6 +1,7 @@
 import 'package:booking/app_logic/index.dart';
 import 'package:booking/screens/booking_page/booking_page_index.dart';
 import 'package:booking/services/services_index.dart';
+
 import 'package:booking/widgets/widgets_index.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,7 @@ class _BookingPageState extends State<BookingPage> {
         ),
         body: state.map(
           loading: (_) => const Center(child: CustomFadingCircleIndicator()),
-          noResults: (_) => const Text('No Results'),
+          noResults: (_) => const NoResultWidget(),
           loaded: (loadEvent) => BookingPageContent(
             bookingInfo: loadEvent.data,
             hotelAddress: widget.hotelAddress,

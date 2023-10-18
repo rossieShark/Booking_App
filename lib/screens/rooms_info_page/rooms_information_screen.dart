@@ -34,7 +34,7 @@ class RoomsInformationPageState extends State<RoomsInformationPage> {
         ),
         body: state.map(
           loading: (_) => const Center(child: CustomFadingCircleIndicator()),
-          noResults: (_) => const Text('No Results'),
+          noResults: (_) => const NoResultWidget(),
           loaded: (loadEvent) => RoomsListView(roomsList: loadEvent.rooms),
         ),
       );

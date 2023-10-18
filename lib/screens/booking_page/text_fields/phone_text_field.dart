@@ -15,7 +15,7 @@ class PhoneTextField extends StatefulWidget {
 
 class _PhoneTextFieldState extends State<PhoneTextField> {
   var phoneNumberController = MaskedTextController(mask: '+7 (***) ***-**-**');
-  //bool _isValid = true;
+  bool _isValid = true;
   late FocusNode _focusNode;
 
   @override
@@ -37,12 +37,6 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
     });
   }
 
-  // void onTap() {
-  //   isValid = true;
-  //   setState(() {
-
-  //   });
-  // }
   @override
   void dispose() {
     _focusNode.dispose();
@@ -51,13 +45,24 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   }
 
   @override
+  void didChangeDependencies() {
+    _isValid = context
+        .watch<TextFieldsProvider>()
+        .isValidMobile(phoneNumberController);
+
+    super.didChangeDependencies();
+  }
+
+  void onTap() {
+    _isValid = true;
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final controllerProvider =
-        Provider.of<TextFieldsProvider>(context, listen: true);
-    final isValid = controllerProvider.isValidMobile(phoneNumberController);
     return TextFieldContainer(
         isValid: () {
-          return isValid;
+          return _isValid;
         },
         child: Stack(children: [
           Padding(
@@ -89,7 +94,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).nextFocus();
                 },
-                onTap: () {},
+                onTap: onTap,
               ))
         ]));
   }

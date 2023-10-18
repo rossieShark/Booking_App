@@ -6,3 +6,4 @@ export 'package:booking/widgets/fading_indicator.dart';
 export 'package:booking/widgets/rating_section.dart';
 export 'package:booking/widgets/address_section.dart';
 export 'package:booking/widgets/custom_text_field.dart';
+export 'package:booking/widgets/no_results_widget.dart';

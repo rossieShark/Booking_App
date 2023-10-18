@@ -13,10 +13,6 @@ class HotelPageMainContent extends StatefulWidget {
 
 class HotelPageMainContentState extends State<HotelPageMainContent> {
   final hotelName = 'Steigenberg Makadi';
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
